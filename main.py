@@ -17,6 +17,8 @@ channel = 21
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(channel, GPIO.IN)
 
+GPIO.setup(11, GPIO.out)
+
 
 def main():
 
@@ -33,7 +35,13 @@ def main():
 	while True:
 		update_display()
 
+def open_valve(val: bool):
+	if val == False:
+		GPIO.output(11, 1)
+	else:
+		GPIO.output(11, 0)
 	
+
 def update_display():
 	
 	draw = ImageDraw.Draw(image)
@@ -66,4 +74,10 @@ def moisture_detection(channel):
 	else:
 		print("water detected")
 
+
+
+
+
 main()
+
+
